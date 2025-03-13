@@ -40,7 +40,7 @@ function showVideos(vidCategories){
                <div class="flex gap-2">
                   <div class="avatar">
                      <div class=" w-[40px] h-[40px] rounded-full px-0 ">
-                       <img class="rounded-lg" src="${vidCat.authors[0].profile-picture}" />
+                       <img class="rounded-lg" src="${vidCat.authors[0].profile_picture}" />
                      </div>
                    </div>
                  <h2 class="text-sm font-semibold">Shape of You</h2>
