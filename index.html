@@ -4,8 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PH-TUBE</title>
+    <!-- font-family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <!-- Daisy UI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<!-- style css -->
+ <style>
+.font-inter{
+   font-family: "Inter", sans-serif;
+   font-optical-sizing: auto;
+   font-style: normal;
+ }
+ </style>
+
 </head>
 <body>
-    
+    <!-- Heading section -->
+     <section class="w-11/12 mx-auto box-border font-inter">
+
+      <nav class=" flex justify-between border-b-2 border-[#17171720] p-6 ">
+        <div >
+            <img class="w-9/12" src="design/Logo.png" alt="This is a logo of PH_TUBE">
+        </div>
+     <div>
+        <button class="btn ">Sort by view</button>
+     </div>
+     <div>
+        <button class="btn bg-[#FF1F3D] text-white">Blog</button>
+     </div>
+      
+           
+      </nav>
+      <!-- suggestion button section -->
+       <div id="div-button-container" class="flex  justify-center py-8 gap-6">
+        
+
+            <button class="btn btn-sm bg-[#FF1F3D] text-white">All</button>
+            <!-- <button class="btn btn-sm">Music</button>
+            <button class="btn btn-sm">Comedy</button>
+            <button class="btn btn-sm">Drawing</button> -->
+   
+       </div>
+
+       <div id="div-video-container"class="grid grid-cols-4 w-11/12 mx-auto my-6 py-4  gap-6 flex-wrap">
+         
+       </div>
+      
+
+
+
+
+     </section>
+    <script src="scripts/script.js"></script> 
 </body>
 </html>
