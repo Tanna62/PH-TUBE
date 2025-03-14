@@ -1,3 +1,13 @@
+const removeActiveClass=()=>{
+  const activeBtn=document.getElementsByClassName("active");
+  for(let btn of activeBtn){
+    btn.classList.remove("active")
+  }
+}
+
+
+
+
 // pothome ekta function use kore button er data ke 
 // fetch kore niye asbo!oi function ta ekta promise response return korbe 
 // and oi promise response ke json e convert korbo 
@@ -17,14 +27,27 @@ function loadCategories(){
 function loadVideos(){
     fetch('https://openapi.programming-hero.com/api/phero-tube/videos')
     .then((response)=>response.json())
-    .then((data)=>showVideos(data.videos))
+    .then((data)=>{
+      removeActiveClass();
+      document.getElementById("btn-all").classList.add("active");
+      showVideos(data.videos)})
 }
+
+
 const loadCategoriesVideos = (id) => {
     const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
     console.log(url);
     fetch(url)
       .then((res) => res.json())
-      .then((data) => showVideos(data.category))
+      .then((data) =>{
+        // console.log(id)
+       removeActiveClass();
+        const clickedBtn=document.getElementById(`btn-${id}`);
+   
+        clickedBtn.classList.add("active");
+        console.log(clickedBtn)
+        showVideos(data.category)
+      })
       .catch((error) => console.error('Error fetching data:', error));
   };
   
@@ -106,7 +129,7 @@ function showButtonCategories(categories){
     // ekhane dynamic vabe div create kore fetch kora data gulo ke loop chaliye
     //  ekhon oi data gulo ke diye sob category gulo ke nilam
     divCategories.innerHTML=`
-    <button onclick="loadCategoriesVideos(${cat.category_id})" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white text-black">${cat.category}</button>
+    <button id="btn-${cat.category_id}" onclick="loadCategoriesVideos(${cat.category_id})" class="btn btn-sm hover:bg-[#ff1f3d94] hover:text-white text-black">${cat.category}</button>
     
     
     `
