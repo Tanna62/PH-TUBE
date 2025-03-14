@@ -19,8 +19,31 @@ function loadVideos(){
     .then((response)=>response.json())
     .then((data)=>showVideos(data.videos))
 }
+const loadCategoriesVideos = (id) => {
+    const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
+    console.log(url);
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => showVideos(data.category))
+      .catch((error) => console.error('Error fetching data:', error));
+  };
+  
 function showVideos(vidCategories){
   const divVideoContainer=document.getElementById("div-video-container");
+  divVideoContainer.innerHTML="";
+  if(vidCategories.length === 0){
+    divVideoContainer.innerHTML=`<div class="flex flex-col gap-4 justify-center items-center col-span-full text-center">
+
+      <div>
+        <img src="design/Icon.png" alt="There is no content here picture">
+      </div>
+       <div>
+          <h2 class="text-2xl font-semibold text-black">Oops!! Sorry, There is no <br> content here</h2>
+       </div>
+       </div>`
+       return;
+  }
+
   for(let vidCat of vidCategories){
     const divVidCon=document.createElement("div");
     divVidCon.innerHTML=`
@@ -43,7 +66,7 @@ function showVideos(vidCategories){
                        <img class="rounded-lg" src="${vidCat.authors[0].profile_picture}" />
                      </div>
                    </div>
-                 <h2 class="text-sm font-semibold">Shape of You</h2>
+                 <h2 class="text-sm font-semibold">${vidCat.authors[0].profile_name}</h2>
                </div>
             
                
@@ -61,7 +84,7 @@ function showVideos(vidCategories){
                   </div>
                </div>
                
-                <div class="pl-14 text-gray-500 mt-2">91K views</div>
+                <div class="pl-14 text-gray-500 mt-2">${vidCat.others.views} views</div>
               
             </div>
           </div>
@@ -83,7 +106,7 @@ function showButtonCategories(categories){
     // ekhane dynamic vabe div create kore fetch kora data gulo ke loop chaliye
     //  ekhon oi data gulo ke diye sob category gulo ke nilam
     divCategories.innerHTML=`
-    <button class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white text-black">${cat.category}</button>
+    <button onclick="loadCategoriesVideos(${cat.category_id})" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white text-black">${cat.category}</button>
     
     
     `
